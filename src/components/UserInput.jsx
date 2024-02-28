@@ -1,21 +1,7 @@
 import { useState } from "react"
 
-export default function UserInput() {
-    const [userInput, setUserInput] = useState({
-        'initialInvestment': 1000,
-        'annulaInvestment': 12000,
-        'expectedReturn': 14000,
-        'duration': 10
-    })
+export default function UserInput({onChangeInput,userInput}) {
 
-    function handleChnage(inputIdentifier, newValue) {
-        setUserInput(prevUserInput => {
-            return {
-                ...prevValue,
-                [prevUserInput]: newValue
-            }
-        })
-    }
     return (
         <section id="user-input">
             <div className="input-group">
@@ -25,15 +11,15 @@ export default function UserInput() {
                     type="number" 
                     required
                     value={userInput.initialInvestment}
-                    onChange={(event)=>handleChnage(initialInvestment,event.target,value)}></input>
+                    onChange={(event)=>onChangeInput(initialInvestment,event.target,value)}></input>
                 </p>
                 <p>
                     <label>Annual Investment</label>
                     <input 
                     type="number" 
                     required
-                    value={userInput.annulaInvestment}
-                    onChange={(event)=>handleChnage(annulaInvestment,event.target,value)}></input>
+                    value={userInput.annualInvestment}
+                    onChange={(event)=>onChangeInput(annualInvestment,event.target,value)}></input>
                 </p>
             </div>
             <div className="input-group">
@@ -43,7 +29,7 @@ export default function UserInput() {
                     type="number" 
                     required
                     value={userInput.expectedReturn}
-                    onChange={(event)=>handleChnage(expectedReturn,event.target,value)}></input>
+                    onChange={(event)=>onChangeInput(expectedReturn,event.target,value)}></input>
                 </p>
                 <p>
                     <label>Duration</label>
@@ -51,7 +37,7 @@ export default function UserInput() {
                     type="number" 
                     required
                     value={userInput.duration}
-                    onChange={(event)=>handleChnage(duration,event.target,value)}></input>
+                    onChange={(event)=>onChangeInput(duration,event.target,value)}></input>
                 </p>
             </div>
         </section>
