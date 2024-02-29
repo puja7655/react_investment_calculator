@@ -9,21 +9,24 @@ function App() {
     'annualInvestment': 12000,
     'expectedReturn': 6,
     'duration': 10
-})
+  })
 
-function handleChnage(inputIdentifier, newValue) {
+  const validInput = userInput.duration >= 1
+  function handleChange(inputIdentifier, newValue) {
     setUserInput(prevUserInput => {
-        return {
-            ...prevValue,
-            [prevUserInput]: +newValue
-        }
+      return {
+        ...prevUserInput,
+        [inputIdentifier]: +newValue
+      }
     })
-}
+    console.log(userInput)
+  }
   return (
     <div>
       <Header></Header>
-      <UserInput onChangeInput={handleChnage} userInput={userInput}></UserInput>
-      <Results input={userInput}/>
+      <UserInput onChangeInput={handleChange} userValueInput={userInput}></UserInput>
+      {!validInput && <p className='center'>Please enter duration greater than zero</p>}
+      {validInput && <Results input={userInput} />}
     </div>
   )
 }
